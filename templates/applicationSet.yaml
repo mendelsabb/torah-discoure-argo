@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: {{ .Values.applicationSet.name }}
+  namespace: {{ .Values.applicationSet.namespace }}
+spec:
+  generators:
+    - list:
+        elements:
+          {{- range $generator := .generators }}
+            - namespace: {{ $generator.namespace }}
+          {{- end }}
+  template:
+    metadata:
+      name: "{{ .namespace }}-app"
+    spec:
+      project: {{ .Values.applicationSet.project }}
+      source:
+        repoURL: {{ .Values.applicationSet.template.repoUrl }}
+        path: {{ .Values.applicationSet.template.path }}
+        targetRevision: {{ .Values.applicationSet.template.targetRevision }}
+        # Reference the secret for GitHub authentication
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{ .namespace }}"
+      syncPolicy:
+        automated: {}
