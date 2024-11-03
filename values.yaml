@@ -1,16 +1,11 @@
+# values.yaml
 applicationSet:
   name: apps-in-namespaces
   namespace: 896mendels
   project: torah-discoure
   generators:
-    - namespace: '896mendels'  
+    - namespace: '896mendels'
   template:
     repoUrl: https://github.com/mendelsabb/parasha.git
     path: chart/
-    branch: 'dev'
     targetRevision: dev
-    syncPolicy:
-      automated: true
-
-# github:
-#   token: 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      
