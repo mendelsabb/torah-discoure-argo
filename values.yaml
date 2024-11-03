@@ -1,10 +1,10 @@
-# values.yaml
 applicationSet:
   name: apps-in-namespaces
   namespace: 896mendels
   project: torah-discoure
   generators:
     - namespace: '896mendels'
+      appname: 'torah-app'  # This will make the service name start with a letter
   template:
     repoUrl: https://github.com/mendelsabb/parasha.git
     path: chart/

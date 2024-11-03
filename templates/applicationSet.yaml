@@ -9,10 +9,11 @@ spec:
         elements:
           {{- range .Values.applicationSet.generators }}
           - namespace: {{ .namespace }}
+            appname: "app-{{ .namespace }}"  # Adding appname parameter
           {{- end }}
   template:
     metadata:
-      name: '{{`{{namespace}}`}}-app'
+      name: '{{`{{appname}}`}}'  # Using appname instead of namespace for the name
     spec:
       project: {{ .Values.applicationSet.project }}
       source:
